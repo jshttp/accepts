@@ -52,7 +52,7 @@ var encoding = accept.encodings('gzip', 'deflate') // -> 'gzip', probably
 You can either have `values` be an array or have an argument list of values.
 
 If the client does not accept any `values`, `false` will be returned.
-If the client accepts any `values`, a filtered list of accepted `values` will be return in descending priority.
+If the client accepts any `values`, the preferred `value` will be return.
 
 For `accept.types()`, shorthand mime types are allowed.
 
