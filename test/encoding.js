@@ -21,7 +21,7 @@ describe('accepts.encodings()', function(){
       it('should return identity', function(){
         var accept = accepts();
         accept.encodings().should.eql(['identity']);
-        accept.encodings('gzip', 'deflate').should.equal('identity');
+        accept.encodings('gzip', 'deflate', 'identity').should.equal('identity');
       })
     })
   })
