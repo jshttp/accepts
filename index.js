@@ -85,7 +85,7 @@ Accepts.prototype.encodings = function (encodings) {
   if (!Array.isArray(encodings)) encodings = slice.call(arguments);
   var n = this.negotiator;
   if (!encodings.length) return n.preferredEncodings();
-  return n.preferredEncodings(encodings)[0] || 'identity';
+  return n.preferredEncodings(encodings)[0] || false;
 }
 
 /**
