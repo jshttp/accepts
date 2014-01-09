@@ -58,10 +58,10 @@ Accepts.prototype.type =
 Accepts.prototype.types = function (types) {
   if (!Array.isArray(types)) types = slice.call(arguments);
   var n = this.negotiator;
-  if (!types.length) return n.preferredMediaTypes();
+  if (!types.length) return n.mediaTypes();
   if (!this.headers.accept) return types[0];
   var mimes = types.map(extToMime);
-  var accepts = n.preferredMediaTypes(mimes);
+  var accepts = n.mediaTypes(mimes);
   var first = accepts[0];
   if (!first) return false;
   return types[mimes.indexOf(first)];
@@ -84,8 +84,8 @@ Accepts.prototype.encoding =
 Accepts.prototype.encodings = function (encodings) {
   if (!Array.isArray(encodings)) encodings = slice.call(arguments);
   var n = this.negotiator;
-  if (!encodings.length) return n.preferredEncodings();
-  return n.preferredEncodings(encodings)[0] || false;
+  if (!encodings.length) return n.encodings();
+  return n.encodings(encodings)[0] || false;
 }
 
 /**
@@ -105,9 +105,9 @@ Accepts.prototype.charset =
 Accepts.prototype.charsets = function (charsets) {
   if (!Array.isArray(charsets)) charsets = [].slice.call(arguments);
   var n = this.negotiator;
-  if (!charsets.length) return n.preferredCharsets();
+  if (!charsets.length) return n.charsets();
   if (!this.headers['accept-charset']) return charsets[0];
-  return n.preferredCharsets(charsets)[0] || false;
+  return n.charsets(charsets)[0] || false;
 }
 
 /**
@@ -129,9 +129,9 @@ Accepts.prototype.language =
 Accepts.prototype.languages = function (langs) {
   if (!Array.isArray(langs)) langs = slice.call(arguments);
   var n = this.negotiator;
-  if (!langs.length) return n.preferredLanguages();
+  if (!langs.length) return n.languages();
   if (!this.headers['accept-language']) return langs[0];
-  return n.preferredLanguages(langs)[0] || false;
+  return n.languages(langs)[0] || false;
 }
 
 /**
