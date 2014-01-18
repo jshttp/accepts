@@ -23,6 +23,13 @@ describe('accepts.encodings()', function(){
         accept.encodings().should.eql(['identity']);
         accept.encodings('gzip', 'deflate', 'identity').should.equal('identity');
       })
+
+      describe('when identity is not included', function(){
+        it('should return false', function(){
+          var accept = accepts();
+          accept.encodings('gzip', 'deflate').should.equal(false);
+        })
+      })
     })
   })
 
