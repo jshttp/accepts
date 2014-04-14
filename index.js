@@ -26,27 +26,27 @@ function Accepts(req) {
  * Examples:
  *
  *     // Accept: text/html
- *     this.accepts('html');
+ *     this.types('html');
  *     // => "html"
  *
  *     // Accept: text/*, application/json
- *     this.accepts('html');
+ *     this.types('html');
  *     // => "html"
- *     this.accepts('text/html');
+ *     this.types('text/html');
  *     // => "text/html"
- *     this.accepts('json', 'text');
+ *     this.types('json', 'text');
  *     // => "json"
- *     this.accepts('application/json');
+ *     this.types('application/json');
  *     // => "application/json"
  *
  *     // Accept: text/*, application/json
- *     this.accepts('image/png');
- *     this.accepts('png');
+ *     this.types('image/png');
+ *     this.types('png');
  *     // => undefined
  *
  *     // Accept: text/*;q=.5, application/json
- *     this.accepts(['html', 'json']);
- *     this.accepts('html', 'json');
+ *     this.types(['html', 'json']);
+ *     this.types('html', 'json');
  *     // => "json"
  *
  * @param {String|Array} type(s)...
