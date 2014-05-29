@@ -25,7 +25,11 @@
     "mocha": "*",
     "should": "*"
   },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
   "scripts": {
-    "test": "mocha --require should --reporter spec"
+    "test": "mocha --require should --reporter dot",
+    "test-travis": "mocha --require should --reporter spec"
   }
 }
