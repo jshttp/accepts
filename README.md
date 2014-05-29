@@ -1,4 +1,7 @@
-# Accepts [![Build Status](https://travis-ci.org/expressjs/accepts.png)](https://travis-ci.org/expressjs/accepts)
+# Accepts
+
+[![NPM version](https://badge.fury.io/js/accepts.svg)](http://badge.fury.io/js/accepts)
+[![Build Status](https://travis-ci.org/expressjs/accepts.svg?branch=master)](https://travis-ci.org/expressjs/accepts)
 
 Higher level content negotation based on [negotiator](https://github.com/federomero/negotiator). Extracted from [koa](https://github.com/koajs/koa) for general use.
 
