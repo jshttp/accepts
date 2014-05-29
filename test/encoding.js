@@ -2,7 +2,7 @@
 function accepts(encoding) {
   return require('../')({
     headers: {
-      'accept-encoding': encoding || ''
+      'accept-encoding': encoding
     }
   })
 }
@@ -17,7 +17,7 @@ describe('accepts.encodings()', function(){
       })
     })
 
-    describe('when Accept-Encoding is not populated', function(){
+    describe('when Accept-Encoding is not in request', function(){
       it('should return identity', function(){
         var accept = accepts();
         accept.encodings().should.eql(['identity']);
@@ -27,6 +27,21 @@ describe('accepts.encodings()', function(){
       describe('when identity is not included', function(){
         it('should return false', function(){
           var accept = accepts();
+          accept.encodings('gzip', 'deflate').should.equal(false);
+        })
+      })
+    })
+
+    describe('when Accept-Encoding is empty', function(){
+      it('should return identity', function(){
+        var accept = accepts('');
+        accept.encodings().should.eql(['identity']);
+        accept.encodings('gzip', 'deflate', 'identity').should.equal('identity');
+      })
+
+      describe('when identity is not included', function(){
+        it('should return false', function(){
+          var accept = accepts('');
           accept.encodings('gzip', 'deflate').should.equal(false);
         })
       })

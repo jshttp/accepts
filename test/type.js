@@ -2,7 +2,7 @@
 function accepts(type) {
   return require('../')({
     headers: {
-      'accept': type || ''
+      'accept': type
     }
   })
 }
@@ -16,9 +16,16 @@ describe('accepts.types()', function(){
       })
     })
 
-    describe('when Accept is not populated', function(){
-      it('should return []', function(){
+    describe('when Accept not in request', function(){
+      it('should return */*', function(){
         var accept = accepts();
+        accept.types().should.eql(['*/*']);
+      })
+    })
+
+    describe('when Accept is empty', function(){
+      it('should return []', function(){
+        var accept = accepts('');
         accept.types().should.eql([]);
       })
     })

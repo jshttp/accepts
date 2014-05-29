@@ -2,7 +2,7 @@
 function accepts(language) {
   return require('../')({
     headers: {
-      'accept-language': language || ''
+      'accept-language': language
     }
   })
 }
@@ -16,9 +16,16 @@ describe('accepts.languages()', function(){
       })
     })
 
-    describe('when Accept-Language is not populated', function(){
-      it('should return an empty array', function(){
+    describe('when Accept-Language is not in request', function(){
+      it('should return *', function(){
         var accept = accepts();
+        accept.languages().should.eql(['*']);
+      })
+    })
+
+    describe('when Accept-Language is empty', function(){
+      it('should return an empty array', function(){
+        var accept = accepts('');
         accept.languages().should.eql([]);
       })
     })

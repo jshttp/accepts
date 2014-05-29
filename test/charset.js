@@ -1,7 +1,7 @@
 function accepts(charset) {
   return require('../')({
     headers: {
-      'accept-charset': charset || ''
+      'accept-charset': charset
     }
   })
 }
@@ -15,9 +15,16 @@ describe('accepts.charsets()', function(){
       })
     })
 
-    describe('when Accept-Charset is not populated', function(){
-      it('should return an empty array', function(){
+    describe('when Accept-Charset is not in request', function(){
+      it('should return *', function(){
         var accept = accepts();
+        accept.charsets().should.eql(['*']);
+      })
+    })
+
+    describe('when Accept-Charset is empty', function(){
+      it('should return an empty array', function(){
+        var accept = accepts('');
         accept.charsets().should.eql([]);
       })
     })
