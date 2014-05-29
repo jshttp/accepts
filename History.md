@@ -1,5 +1,5 @@
-unreleased
-==========
+1.0.2 / 2014-05-29
+==================
 
   * Fix interpretation when header not in request
   * deps: pin negotiator@0.4.5
