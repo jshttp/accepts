@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "mime": "~1.2.11",
-    "negotiator": "~0.4.0"
+    "negotiator": "0.4.5"
   },
   "devDependencies": {
     "mocha": "*",
