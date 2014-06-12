@@ -22,6 +22,7 @@
     "negotiator": "0.4.5"
   },
   "devDependencies": {
+    "istanbul": "0.2.10",
     "mocha": "*",
     "should": "*"
   },
@@ -29,7 +30,8 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha --require should --reporter dot",
-    "test-travis": "mocha --require should --reporter spec"
+    "test": "mocha --require should --reporter dot test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require should --reporter dot test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require should --reporter spec test/"
   }
 }
