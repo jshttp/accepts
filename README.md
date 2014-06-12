@@ -2,6 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/accepts.svg)](http://badge.fury.io/js/accepts)
 [![Build Status](https://travis-ci.org/expressjs/accepts.svg?branch=master)](https://travis-ci.org/expressjs/accepts)
+[![Coverage Status](https://img.shields.io/coveralls/expressjs/accepts.svg?branch=master)](https://coveralls.io/r/expressjs/accepts)
 
 Higher level content negotation based on [negotiator](https://github.com/federomero/negotiator). Extracted from [koa](https://github.com/koajs/koa) for general use.
 
