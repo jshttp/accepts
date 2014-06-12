@@ -1,3 +1,9 @@
+unreleased
+==========
+
+  * deps: negotiator@0.4.6
+    - Order by specificity when quality is the same
+
 1.0.2 / 2014-05-29
 ==================
 
