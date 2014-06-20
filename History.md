@@ -1,5 +1,5 @@
-unreleased
-==========
+1.0.5 / 2014-06-20
+==================
 
  * fix crash when unknown extension given
 
