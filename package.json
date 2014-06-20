@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "expressjs/accepts",
   "dependencies": {
-    "mime": "~1.2.11",
+    "mime-types": "~1.0.0",
     "negotiator": "0.4.6"
   },
   "devDependencies": {

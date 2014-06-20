@@ -1,5 +1,5 @@
 var Negotiator = require('negotiator')
-var mime = require('mime')
+var mime = require('mime-types')
 
 var slice = [].slice
 
