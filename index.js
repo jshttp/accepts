@@ -60,7 +60,7 @@ Accepts.prototype.types = function (types) {
   var n = this.negotiator;
   if (!types.length) return n.mediaTypes();
   if (!this.headers.accept) return types[0];
-  var mimes = types.map(extToMime);
+  var mimes = types.map(extToMime).filter(validMime);
   var accepts = n.mediaTypes(mimes);
   var first = accepts[0];
   if (!first) return false;
@@ -145,4 +145,16 @@ Accepts.prototype.languages = function (langs) {
 function extToMime(type) {
   if (~type.indexOf('/')) return type;
   return mime.lookup(type);
+}
+
+/**
+ * Check if mime is valid.
+ *
+ * @param {String} type
+ * @return {String}
+ * @api private
+ */
+
+function validMime(type) {
+  return typeof type === 'string';
 }

@@ -1,3 +1,13 @@
+unreleased
+==========
+
+ * fix crash when unknown extension given
+
+1.0.4 / 2014-06-19
+==================
+
+  * use `mime-types`
+
 1.0.3 / 2014-06-11
 ==================
 

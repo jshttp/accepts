@@ -55,6 +55,7 @@ describe('accepts.types()', function(){
       accept.types('txt').should.equal('txt');
       accept.types('.txt').should.equal('.txt');
       accept.types('png').should.be.false;
+      accept.types('bogus').should.be.false;
     })
   })
 
