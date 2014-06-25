@@ -7,10 +7,10 @@
   "repository": "expressjs/accepts",
   "dependencies": {
     "mime-types": "~1.0.0",
-    "negotiator": "0.4.6"
+    "negotiator": "0.4.7"
   },
   "devDependencies": {
-    "istanbul": "0.2.10",
+    "istanbul": "0.2.11",
     "mocha": "*",
     "should": "*"
   },
