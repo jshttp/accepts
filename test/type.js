@@ -72,6 +72,7 @@ describe('accepts.types()', function(){
       var accept = accepts('text/plain, text/html');
       accept.types('png', 'text', 'html').should.equal('text');
       accept.types('png', 'html').should.equal('html');
+      accept.types('bogus', 'html').should.equal('html');
     })
   })
 

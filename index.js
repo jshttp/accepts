@@ -60,11 +60,11 @@ Accepts.prototype.types = function (types) {
   var n = this.negotiator;
   if (!types.length) return n.mediaTypes();
   if (!this.headers.accept) return types[0];
-  var mimes = types.map(extToMime).filter(validMime);
-  var accepts = n.mediaTypes(mimes);
+  var mimes = typesToMimes(types);
+  var accepts = n.mediaTypes(Object.keys(mimes));
   var first = accepts[0];
   if (!first) return false;
-  return types[mimes.indexOf(first)];
+  return mimes[first];
 }
 
 /**
@@ -135,26 +135,20 @@ Accepts.prototype.languages = function (langs) {
 }
 
 /**
- * Convert extnames to mime.
- *
- * @param {String} type
- * @return {String}
+ * Convert types to mimes
+ * @param {Array} types
+ * @return {Object}
  * @api private
  */
 
-function extToMime(type) {
-  if (~type.indexOf('/')) return type;
-  return mime.lookup(type);
-}
+function typesToMimes(types) {
+  var mimes = {};
+  types.forEach(function (type) {
+    var m = ~type.indexOf('/')
+      ? type
+      : mime.lookup(type);
 
-/**
- * Check if mime is valid.
- *
- * @param {String} type
- * @return {String}
- * @api private
- */
-
-function validMime(type) {
-  return typeof type === 'string';
+    if (m) mimes[m] = type;
+  });
+  return mimes;
 }
