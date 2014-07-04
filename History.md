@@ -1,5 +1,5 @@
-unreleased
-==========
+1.0.7 / 2014-07-04
+==================
 
   * Fix wrong type returned from `type` when match after unknown extension
 
