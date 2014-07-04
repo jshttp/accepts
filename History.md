@@ -1,3 +1,7 @@
+unreleased
+==========
+
+  * Fix wrong type returned from `type` when match after unknown extension
 
 1.0.6 / 2014-06-24
 ==================
