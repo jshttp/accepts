@@ -1,32 +1,30 @@
 
-function accepts(type) {
-  return require('../')({
-    headers: {
-      'accept': type
-    }
-  })
-}
+var accepts = require('..')
+var assert = require('assert')
 
 describe('accepts.types()', function(){
   describe('with no arguments', function(){
     describe('when Accept is populated', function(){
       it('should return all accepted types', function(){
-        var accept = accepts('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain');
-        accept.types().should.eql(['text/html', 'text/plain', 'image/jpeg', 'application/*']);
+        var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
+        var accept = accepts(req)
+        assert.deepEqual(accept.types(), ['text/html', 'text/plain', 'image/jpeg', 'application/*'])
       })
     })
 
     describe('when Accept not in request', function(){
       it('should return */*', function(){
-        var accept = accepts();
-        accept.types().should.eql(['*/*']);
+        var req = createRequest()
+        var accept = accepts(req)
+        assert.deepEqual(accept.types(), ['*/*'])
       })
     })
 
     describe('when Accept is empty', function(){
       it('should return []', function(){
-        var accept = accepts('');
-        accept.types().should.eql([]);
+        var req = createRequest('')
+        var accept = accepts(req)
+        assert.deepEqual(accept.types(), [])
       })
     })
   })
@@ -34,72 +32,88 @@ describe('accepts.types()', function(){
   describe('with no valid types', function(){
     describe('when Accept is populated', function(){
       it('should return false', function(){
-        var accept = accepts('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain');
-        accept.types('image/png', 'image/tiff').should.be.false;
+        var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
+        var accept = accepts(req)
+        assert.strictEqual(accept.types('image/png', 'image/tiff'), false)
       })
     })
 
     describe('when Accept is not populated', function(){
       it('should return the first type', function(){
-        var accept = accepts();
-        accept.types('text/html', 'text/plain', 'image/jpeg', 'application/*').should.equal('text/html');
+        var req = createRequest()
+        var accept = accepts(req)
+        assert.equal(accept.types('text/html', 'text/plain', 'image/jpeg', 'application/*'), 'text/html')
       })
     })
   })
 
   describe('when extensions are given', function(){
     it('should convert to mime types', function(){
-      var accept = accepts('text/plain, text/html');
-      accept.types('html').should.equal('html');
-      accept.types('.html').should.equal('.html');
-      accept.types('txt').should.equal('txt');
-      accept.types('.txt').should.equal('.txt');
-      accept.types('png').should.be.false;
-      accept.types('bogus').should.be.false;
+      var req = createRequest('text/plain, text/html')
+      var accept = accepts(req)
+      assert.equal(accept.types('html'), 'html')
+      assert.equal(accept.types('.html'), '.html')
+      assert.equal(accept.types('txt'), 'txt')
+      assert.equal(accept.types('.txt'), '.txt')
+      assert.strictEqual(accept.types('png'), false)
+      assert.strictEqual(accept.types('bogus'), false)
     })
   })
 
   describe('when an array is given', function(){
     it('should return the first match', function(){
-      var accept = accepts('text/plain, text/html');
-      accept.types(['png', 'text', 'html']).should.equal('text');
-      accept.types(['png', 'html']).should.equal('html');
-      accept.types(['bogus', 'html']).should.equal('html');
+      var req = createRequest('text/plain, text/html')
+      var accept = accepts(req)
+      assert.equal(accept.types(['png', 'text', 'html']), 'text')
+      assert.equal(accept.types(['png', 'html']), 'html')
+      assert.equal(accept.types(['bogus', 'html']), 'html')
     })
   })
 
   describe('when multiple arguments are given', function(){
     it('should return the first match', function(){
-      var accept = accepts('text/plain, text/html');
-      accept.types('png', 'text', 'html').should.equal('text');
-      accept.types('png', 'html').should.equal('html');
-      accept.types('bogus', 'html').should.equal('html');
+      var req = createRequest('text/plain, text/html')
+      var accept = accepts(req)
+      assert.equal(accept.types('png', 'text', 'html'), 'text')
+      assert.equal(accept.types('png', 'html'), 'html')
+      assert.equal(accept.types('bogus', 'html'), 'html')
     })
   })
 
   describe('when present in Accept as an exact match', function(){
     it('should return the type', function(){
-      var accept = accepts('text/plain, text/html');
-      accept.types('text/html').should.equal('text/html');
-      accept.types('text/plain').should.equal('text/plain');
+      var req = createRequest('text/plain, text/html')
+      var accept = accepts(req)
+      assert.equal(accept.types('text/html'), 'text/html')
+      assert.equal(accept.types('text/plain'), 'text/plain')
     })
   })
 
   describe('when present in Accept as a type match', function(){
     it('should return the type', function(){
-      var accept = accepts('application/json, */*');
-      accept.types('text/html').should.equal('text/html');
-      accept.types('text/plain').should.equal('text/plain');
-      accept.types('image/png').should.equal('image/png');
+      var req = createRequest('application/json, */*')
+      var accept = accepts(req)
+      assert.equal(accept.types('text/html'), 'text/html')
+      assert.equal(accept.types('text/plain'), 'text/plain')
+      assert.equal(accept.types('image/png'), 'image/png')
     })
   })
 
   describe('when present in Accept as a subtype match', function(){
     it('should return the type', function(){
-      var accept = accepts('application/json, text/*');
-      accept.types('text/html').should.equal('text/html');
-      accept.types('text/plain').should.equal('text/plain');
-      accept.types('image/png').should.be.false;
+      var req = createRequest('application/json, text/*')
+      var accept = accepts(req)
+      assert.equal(accept.types('text/html'), 'text/html')
+      assert.equal(accept.types('text/plain'), 'text/plain')
+      assert.strictEqual(accept.types('image/png'), false)
     })
   })
 })
+
+function createRequest(type) {
+  return {
+    headers: {
+      'accept': type
+    }
+  }
+}

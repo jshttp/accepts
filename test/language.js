@@ -1,32 +1,30 @@
 
-function accepts(language) {
-  return require('../')({
-    headers: {
-      'accept-language': language
-    }
-  })
-}
+var accepts = require('..')
+var assert = require('assert')
 
 describe('accepts.languages()', function(){
   describe('with no arguments', function(){
     describe('when Accept-Language is populated', function(){
       it('should return accepted types', function(){
-        var accept = accepts('en;q=0.8, es, pt');
-        accept.languages().should.eql(['es', 'pt', 'en']);
+        var req = createRequest('en;q=0.8, es, pt')
+        var accept = accepts(req)
+        assert.deepEqual(accept.languages(), ['es', 'pt', 'en'])
       })
     })
 
     describe('when Accept-Language is not in request', function(){
       it('should return *', function(){
-        var accept = accepts();
-        accept.languages().should.eql(['*']);
+        var req = createRequest()
+        var accept = accepts(req)
+        assert.deepEqual(accept.languages(), ['*'])
       })
     })
 
     describe('when Accept-Language is empty', function(){
       it('should return an empty array', function(){
-        var accept = accepts('');
-        accept.languages().should.eql([]);
+        var req = createRequest('')
+        var accept = accepts(req)
+        assert.deepEqual(accept.languages(), [])
       })
     })
   })
@@ -35,31 +33,43 @@ describe('accepts.languages()', function(){
     describe('when Accept-Language is populated', function(){
       describe('if any types types match', function(){
         it('should return the best fit', function(){
-          var accept = accepts('en;q=0.8, es, pt');
-          accept.languages('es', 'en').should.equal('es');
+          var req = createRequest('en;q=0.8, es, pt')
+          var accept = accepts(req)
+          assert.equal(accept.languages('es', 'en'), 'es')
         })
       })
 
       describe('if no types match', function(){
         it('should return false', function(){
-          var accept = accepts('en;q=0.8, es, pt');
-          accept.languages('fr', 'au').should.be.false;
+          var req = createRequest('en;q=0.8, es, pt')
+          var accept = accepts(req)
+          assert.strictEqual(accept.languages('fr', 'au'), false)
         })
       })
     })
 
     describe('when Accept-Language is not populated', function(){
       it('should return the first type', function(){
-        var accept = accepts();
-        accept.languages('es', 'en').should.equal('es');
+        var req = createRequest()
+        var accept = accepts(req)
+        assert.equal(accept.languages('es', 'en'), 'es')
       })
     })
   })
 
   describe('with an array', function(){
     it('should return the best fit', function(){
-      var accept = accepts('en;q=0.8, es, pt');
-      accept.languages(['es', 'en']).should.equal('es');
+      var req = createRequest('en;q=0.8, es, pt')
+      var accept = accepts(req)
+      assert.equal(accept.languages(['es', 'en']), 'es')
     })
   })
 })
+
+function createRequest(language) {
+  return {
+    headers: {
+      'accept-language': language
+    }
+  }
+}
