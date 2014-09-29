@@ -3,6 +3,9 @@ unreleased
 
   * deps: mime-types@~2.0.2
     - deps: mime-db@~1.1.0
+  * deps: negotiator@0.4.8
+    - Fix all negotiations to be case-insensitive
+    - Stable sort preferences of same quality according to client order
 
 1.1.0 / 2014-09-02
 ==================
