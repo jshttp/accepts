@@ -1,5 +1,5 @@
-unreleased
-==========
+1.1.2 / 2014-10-14
+==================
 
   * deps: negotiator@0.4.9
     - Fix error when media type has invalid parameter
