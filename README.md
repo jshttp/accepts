@@ -84,7 +84,7 @@ accept.types('text/html', 'text/json') // -> 'text/html', since it was first
 
 [npm-image]: https://img.shields.io/npm/v/accepts.svg?style=flat
 [npm-url]: https://npmjs.org/package/accepts
-[node-version-image]: https://img.shields.io/badge/node.js-%3E%3D_0.8-brightgreen.svg?style=flat
+[node-version-image]: https://img.shields.io/node/v/accepts.svg?style=flat
 [node-version-url]: http://nodejs.org/download/
 [travis-image]: https://img.shields.io/travis/jshttp/accepts.svg?style=flat
 [travis-url]: https://travis-ci.org/jshttp/accepts
