@@ -1,5 +1,5 @@
-unreleased
-==========
+1.2.0 / 2014-12-19
+==================
 
   * deps: negotiator@0.5.0
     - Fix list return order when large accepted list
