@@ -1,3 +1,11 @@
+unreleased
+==========
+
+  * deps: negotiator@0.5.0
+    - Fix list return order when large accepted list
+    - Fix missing identity encoding when q=0 exists
+    - Remove dynamic building of Negotiator class
+
 1.1.4 / 2014-12-10
 ==================
 

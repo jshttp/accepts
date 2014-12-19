@@ -7,7 +7,7 @@
   "repository": "jshttp/accepts",
   "dependencies": {
     "mime-types": "~2.0.4",
-    "negotiator": "0.4.9"
+    "negotiator": "0.5.0"
   },
   "devDependencies": {
     "istanbul": "~0.3.4",
