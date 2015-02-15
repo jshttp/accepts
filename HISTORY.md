@@ -1,5 +1,5 @@
-unreleased
-==========
+1.2.4 / 2015-02-14
+==================
 
   * Support Node.js 0.6
   * deps: mime-types@~2.0.9
