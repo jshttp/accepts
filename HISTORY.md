@@ -4,6 +4,8 @@ unreleased
   * Support Node.js 0.6
   * deps: mime-types@~2.0.9
     - deps: mime-db@~1.7.0
+  * deps: negotiator@0.5.1
+    - Fix preference sorting to be stable for long acceptable lists
 
 1.2.3 / 2015-01-31
 ==================
