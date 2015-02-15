@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * Support Node.js 0.6
   * deps: mime-types@~2.0.9
     - deps: mime-db@~1.7.0
 
