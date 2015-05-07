@@ -3,6 +3,9 @@ unreleased
 
   * deps: mime-types@~2.0.11
     - deps: mime-db@~1.9.1
+  * deps: negotiator@0.5.2
+    - Fix comparing media types with quoted values
+    - Fix splitting media types with quoted commas
 
 1.2.5 / 2015-03-13
 ==================
