@@ -123,13 +123,13 @@ curl -I -H'Accept: text/html' http://localhost:3000/
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/accepts.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/accepts.svg
 [npm-url]: https://npmjs.org/package/accepts
-[node-version-image]: https://img.shields.io/node/v/accepts.svg?style=flat
+[node-version-image]: https://img.shields.io/node/v/accepts.svg
 [node-version-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/jshttp/accepts.svg?style=flat
+[travis-image]: https://img.shields.io/travis/jshttp/accepts/master.svg
 [travis-url]: https://travis-ci.org/jshttp/accepts
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/accepts.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/jshttp/accepts/master.svg
 [coveralls-url]: https://coveralls.io/r/jshttp/accepts
-[downloads-image]: https://img.shields.io/npm/dm/accepts.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/accepts.svg
 [downloads-url]: https://npmjs.org/package/accepts
