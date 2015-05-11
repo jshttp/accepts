@@ -1,3 +1,9 @@
+unreleased
+==========
+
+  * deps: negotiator@0.5.3
+    - Fix media type parameter matching to be case-insensitive
+
 1.2.6 / 2015-05-07
 ==================
 
