@@ -1,3 +1,10 @@
+/*!
+ * accepts
+ * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
 var Negotiator = require('negotiator')
 var mime = require('mime-types')
 
