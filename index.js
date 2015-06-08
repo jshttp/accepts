@@ -5,12 +5,34 @@
  * MIT Licensed
  */
 
+/**
+ * Module dependencies.
+ * @private
+ */
+
 var Negotiator = require('negotiator')
 var mime = require('mime-types')
 
-var slice = [].slice
+/**
+ * Module variables.
+ * @private
+ */
+
+var slice = Array.prototype.slice
+
+/**
+ * Module exports.
+ * @public
+ */
 
 module.exports = Accepts
+
+/**
+ * Create a new Accepts object for the given req.
+ *
+ * @param {object} req
+ * @public
+ */
 
 function Accepts(req) {
   if (!(this instanceof Accepts))
@@ -58,7 +80,7 @@ function Accepts(req) {
  *
  * @param {String|Array} type(s)...
  * @return {String|Array|Boolean}
- * @api public
+ * @public
  */
 
 Accepts.prototype.type =
@@ -84,7 +106,7 @@ Accepts.prototype.types = function (types) {
  *
  * @param {String|Array} encoding(s)...
  * @return {String|Array}
- * @api public
+ * @public
  */
 
 Accepts.prototype.encoding =
@@ -105,12 +127,12 @@ Accepts.prototype.encodings = function (encodings) {
  *
  * @param {String|Array} charset(s)...
  * @return {String|Array}
- * @api public
+ * @public
  */
 
 Accepts.prototype.charset =
 Accepts.prototype.charsets = function (charsets) {
-  if (!Array.isArray(charsets)) charsets = [].slice.call(arguments);
+  if (!Array.isArray(charsets)) charsets = slice.call(arguments);
   var n = this.negotiator;
   if (!charsets.length) return n.charsets();
   if (!this.headers['accept-charset']) return charsets[0];
@@ -127,7 +149,7 @@ Accepts.prototype.charsets = function (charsets) {
  *
  * @param {String|Array} lang(s)...
  * @return {Array|String}
- * @api public
+ * @public
  */
 
 Accepts.prototype.lang =
@@ -146,7 +168,7 @@ Accepts.prototype.languages = function (langs) {
  *
  * @param {String} type
  * @return {String}
- * @api private
+ * @private
  */
 
 function extToMime(type) {
@@ -159,7 +181,7 @@ function extToMime(type) {
  *
  * @param {String} type
  * @return {String}
- * @api private
+ * @private
  */
 
 function validMime(type) {
