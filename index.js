@@ -213,8 +213,9 @@ Accepts.prototype.languages = function (languages_) {
  */
 
 function extToMime(type) {
-  if (~type.indexOf('/')) return type;
-  return mime.lookup(type);
+  return type.indexOf('/') === -1
+    ? mime.lookup(type)
+    : type
 }
 
 /**

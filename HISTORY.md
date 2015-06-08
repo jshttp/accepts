@@ -6,6 +6,7 @@ unreleased
   * perf: avoid argument reassignment & argument slice
   * perf: avoid negotiator recursive construction
   * perf: enable strict mode
+  * perf: remove unnecessary bitwise operator
 
 1.2.7 / 2015-05-10
 ==================
