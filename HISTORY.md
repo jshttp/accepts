@@ -5,6 +5,7 @@ unreleased
     - deps: mime-db@~1.13.0
   * perf: avoid argument reassignment & argument slice
   * perf: avoid negotiator recursive construction
+  * perf: enable strict mode
 
 1.2.7 / 2015-05-10
 ==================
