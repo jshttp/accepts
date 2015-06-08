@@ -1,7 +1,7 @@
 {
   "name": "accepts",
   "description": "Higher-level content negotiation",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "contributors": [
     "Douglas Christopher Wilson <doug@somethingdoug.com>",
     "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)"

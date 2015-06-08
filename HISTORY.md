@@ -1,5 +1,5 @@
-unreleased
-==========
+1.2.9 / 2015-06-08
+==================
 
   * deps: mime-types@~2.1.1
     - perf: fix deopt during mapping
