@@ -10,7 +10,7 @@ function Accepts(req) {
     return new Accepts(req)
 
   this.headers = req.headers
-  this.negotiator = Negotiator(req)
+  this.negotiator = new Negotiator(req)
 }
 
 /**

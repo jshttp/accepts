@@ -3,6 +3,7 @@ unreleased
 
   * deps: mime-types@~2.1.0
     - deps: mime-db@~1.13.0
+  * perf: avoid negotiator recursive construction
 
 1.2.7 / 2015-05-10
 ==================
