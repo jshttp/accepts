@@ -14,13 +14,6 @@ var Negotiator = require('negotiator')
 var mime = require('mime-types')
 
 /**
- * Module variables.
- * @private
- */
-
-var slice = Array.prototype.slice
-
-/**
  * Module exports.
  * @public
  */
@@ -78,19 +71,31 @@ function Accepts(req) {
  *     this.types('html', 'json');
  *     // => "json"
  *
- * @param {String|Array} type(s)...
+ * @param {String|Array} types...
  * @return {String|Array|Boolean}
  * @public
  */
 
 Accepts.prototype.type =
-Accepts.prototype.types = function (types) {
-  if (!Array.isArray(types)) types = slice.call(arguments);
-  var n = this.negotiator;
-  if (!types.length) return n.mediaTypes();
+Accepts.prototype.types = function (types_) {
+  var types = types_
+
+  // support flattened arguments
+  if (types && !Array.isArray(types)) {
+    types = new Array(arguments.length)
+    for (var i = 0; i < types.length; i++) {
+      types[i] = arguments[i]
+    }
+  }
+
+  // no types, return all requested types
+  if (!types || types.length === 0) {
+    return this.negotiator.mediaTypes()
+  }
+
   if (!this.headers.accept) return types[0];
   var mimes = types.map(extToMime);
-  var accepts = n.mediaTypes(mimes.filter(validMime));
+  var accepts = this.negotiator.mediaTypes(mimes.filter(validMime));
   var first = accepts[0];
   if (!first) return false;
   return types[mimes.indexOf(first)];
@@ -104,17 +109,29 @@ Accepts.prototype.types = function (types) {
  *
  *     ['gzip', 'deflate']
  *
- * @param {String|Array} encoding(s)...
+ * @param {String|Array} encodings...
  * @return {String|Array}
  * @public
  */
 
 Accepts.prototype.encoding =
-Accepts.prototype.encodings = function (encodings) {
-  if (!Array.isArray(encodings)) encodings = slice.call(arguments);
-  var n = this.negotiator;
-  if (!encodings.length) return n.encodings();
-  return n.encodings(encodings)[0] || false;
+Accepts.prototype.encodings = function (encodings_) {
+  var encodings = encodings_
+
+  // support flattened arguments
+  if (encodings && !Array.isArray(encodings)) {
+    encodings = new Array(arguments.length)
+    for (var i = 0; i < encodings.length; i++) {
+      encodings[i] = arguments[i]
+    }
+  }
+
+  // no encodings, return all requested encodings
+  if (!encodings || encodings.length === 0) {
+    return this.negotiator.encodings()
+  }
+
+  return this.negotiator.encodings(encodings)[0] || false
 }
 
 /**
@@ -125,18 +142,29 @@ Accepts.prototype.encodings = function (encodings) {
  *
  *     ['utf-8', 'utf-7', 'iso-8859-1']
  *
- * @param {String|Array} charset(s)...
+ * @param {String|Array} charsets...
  * @return {String|Array}
  * @public
  */
 
 Accepts.prototype.charset =
-Accepts.prototype.charsets = function (charsets) {
-  if (!Array.isArray(charsets)) charsets = slice.call(arguments);
-  var n = this.negotiator;
-  if (!charsets.length) return n.charsets();
-  if (!this.headers['accept-charset']) return charsets[0];
-  return n.charsets(charsets)[0] || false;
+Accepts.prototype.charsets = function (charsets_) {
+  var charsets = charsets_
+
+  // support flattened arguments
+  if (charsets && !Array.isArray(charsets)) {
+    charsets = new Array(arguments.length)
+    for (var i = 0; i < charsets.length; i++) {
+      charsets[i] = arguments[i]
+    }
+  }
+
+  // no charsets, return all requested charsets
+  if (!charsets || charsets.length === 0) {
+    return this.negotiator.charsets()
+  }
+
+  return this.negotiator.charsets(charsets)[0] || false
 }
 
 /**
@@ -147,7 +175,7 @@ Accepts.prototype.charsets = function (charsets) {
  *
  *     ['es', 'pt', 'en']
  *
- * @param {String|Array} lang(s)...
+ * @param {String|Array} langs...
  * @return {Array|String}
  * @public
  */
@@ -155,12 +183,23 @@ Accepts.prototype.charsets = function (charsets) {
 Accepts.prototype.lang =
 Accepts.prototype.langs =
 Accepts.prototype.language =
-Accepts.prototype.languages = function (langs) {
-  if (!Array.isArray(langs)) langs = slice.call(arguments);
-  var n = this.negotiator;
-  if (!langs.length) return n.languages();
-  if (!this.headers['accept-language']) return langs[0];
-  return n.languages(langs)[0] || false;
+Accepts.prototype.languages = function (languages_) {
+  var languages = languages_
+
+  // support flattened arguments
+  if (languages && !Array.isArray(languages)) {
+    languages = new Array(arguments.length)
+    for (var i = 0; i < languages.length; i++) {
+      languages[i] = arguments[i]
+    }
+  }
+
+  // no languages, return all requested languages
+  if (!languages || languages.length === 0) {
+    return this.negotiator.languages()
+  }
+
+  return this.negotiator.languages(languages)[0] || false
 }
 
 /**
