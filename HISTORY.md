@@ -3,6 +3,17 @@ unreleased
 
   * deps: mime-types@~2.1.7
     - deps: mime-db@~1.19.0
+  * deps: negotiator@0.6.0
+    - Fix including type extensions in parameters in `Accept` parsing
+    - Fix parsing `Accept` parameters with quoted equals
+    - Fix parsing `Accept` parameters with quoted semicolons
+    - Lazy-load modules from main entry point
+    - perf: delay type concatenation until needed
+    - perf: enable strict mode
+    - perf: hoist regular expressions
+    - perf: remove closures getting spec properties
+    - perf: remove a closure from media type parsing
+    - perf: remove property delete from media type parsing
 
 1.2.13 / 2015-09-06
 ===================
