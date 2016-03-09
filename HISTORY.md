@@ -1,5 +1,5 @@
-unreleased
-==========
+1.3.2 / 2016-03-08
+==================
 
   * deps: mime-types@~2.1.10
     - Fix extension of `application/dash+xml`
