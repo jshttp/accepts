@@ -3,6 +3,11 @@ unreleased
 
   * deps: mime-types@~2.1.11
     - deps: mime-db@~1.23.0
+  * deps: negotiator@0.6.1
+    - perf: improve `Accept` parsing speed
+    - perf: improve `Accept-Charset` parsing speed
+    - perf: improve `Accept-Encoding` parsing speed
+    - perf: improve `Accept-Language` parsing speed
 
 1.3.2 / 2016-03-08
 ==================
