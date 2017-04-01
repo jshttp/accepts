@@ -2,26 +2,26 @@
 var accepts = require('..')
 var assert = require('assert')
 
-describe('accepts.types()', function(){
-  describe('with no arguments', function(){
-    describe('when Accept is populated', function(){
-      it('should return all accepted types', function(){
+describe('accepts.types()', function () {
+  describe('with no arguments', function () {
+    describe('when Accept is populated', function () {
+      it('should return all accepted types', function () {
         var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
         var accept = accepts(req)
         assert.deepEqual(accept.types(), ['text/html', 'text/plain', 'image/jpeg', 'application/*'])
       })
     })
 
-    describe('when Accept not in request', function(){
-      it('should return */*', function(){
+    describe('when Accept not in request', function () {
+      it('should return */*', function () {
         var req = createRequest()
         var accept = accepts(req)
         assert.deepEqual(accept.types(), ['*/*'])
       })
     })
 
-    describe('when Accept is empty', function(){
-      it('should return []', function(){
+    describe('when Accept is empty', function () {
+      it('should return []', function () {
         var req = createRequest('')
         var accept = accepts(req)
         assert.deepEqual(accept.types(), [])
@@ -29,17 +29,17 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('with no valid types', function(){
-    describe('when Accept is populated', function(){
-      it('should return false', function(){
+  describe('with no valid types', function () {
+    describe('when Accept is populated', function () {
+      it('should return false', function () {
         var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
         var accept = accepts(req)
         assert.strictEqual(accept.types('image/png', 'image/tiff'), false)
       })
     })
 
-    describe('when Accept is not populated', function(){
-      it('should return the first type', function(){
+    describe('when Accept is not populated', function () {
+      it('should return the first type', function () {
         var req = createRequest()
         var accept = accepts(req)
         assert.equal(accept.types('text/html', 'text/plain', 'image/jpeg', 'application/*'), 'text/html')
@@ -47,8 +47,8 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('when extensions are given', function(){
-    it('should convert to mime types', function(){
+  describe('when extensions are given', function () {
+    it('should convert to mime types', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
       assert.equal(accept.types('html'), 'html')
@@ -60,8 +60,8 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('when an array is given', function(){
-    it('should return the first match', function(){
+  describe('when an array is given', function () {
+    it('should return the first match', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
       assert.equal(accept.types(['png', 'text', 'html']), 'text')
@@ -70,8 +70,8 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('when multiple arguments are given', function(){
-    it('should return the first match', function(){
+  describe('when multiple arguments are given', function () {
+    it('should return the first match', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
       assert.equal(accept.types('png', 'text', 'html'), 'text')
@@ -80,8 +80,8 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('when present in Accept as an exact match', function(){
-    it('should return the type', function(){
+  describe('when present in Accept as an exact match', function () {
+    it('should return the type', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
       assert.equal(accept.types('text/html'), 'text/html')
@@ -89,8 +89,8 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('when present in Accept as a type match', function(){
-    it('should return the type', function(){
+  describe('when present in Accept as a type match', function () {
+    it('should return the type', function () {
       var req = createRequest('application/json, */*')
       var accept = accepts(req)
       assert.equal(accept.types('text/html'), 'text/html')
@@ -99,8 +99,8 @@ describe('accepts.types()', function(){
     })
   })
 
-  describe('when present in Accept as a subtype match', function(){
-    it('should return the type', function(){
+  describe('when present in Accept as a subtype match', function () {
+    it('should return the type', function () {
       var req = createRequest('application/json, text/*')
       var accept = accepts(req)
       assert.equal(accept.types('text/html'), 'text/html')
@@ -110,7 +110,7 @@ describe('accepts.types()', function(){
   })
 })
 
-function createRequest(type) {
+function createRequest (type) {
   return {
     headers: {
       'accept': type

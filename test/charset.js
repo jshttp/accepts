@@ -2,26 +2,26 @@
 var accepts = require('..')
 var assert = require('assert')
 
-describe('accepts.charsets()', function(){
-  describe('with no arguments', function(){
-    describe('when Accept-Charset is populated', function(){
-      it('should return accepted types', function(){
+describe('accepts.charsets()', function () {
+  describe('with no arguments', function () {
+    describe('when Accept-Charset is populated', function () {
+      it('should return accepted types', function () {
         var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
         var accept = accepts(req)
         assert.deepEqual(accept.charsets(), ['utf-8', 'utf-7', 'iso-8859-1'])
       })
     })
 
-    describe('when Accept-Charset is not in request', function(){
-      it('should return *', function(){
+    describe('when Accept-Charset is not in request', function () {
+      it('should return *', function () {
         var req = createRequest()
         var accept = accepts(req)
         assert.deepEqual(accept.charsets(), ['*'])
       })
     })
 
-    describe('when Accept-Charset is empty', function(){
-      it('should return an empty array', function(){
+    describe('when Accept-Charset is empty', function () {
+      it('should return an empty array', function () {
         var req = createRequest('')
         var accept = accepts(req)
         assert.deepEqual(accept.charsets(), [])
@@ -29,18 +29,18 @@ describe('accepts.charsets()', function(){
     })
   })
 
-  describe('with multiple arguments', function(){
-    describe('when Accept-Charset is populated', function(){
-      describe('if any types match', function(){
-        it('should return the best fit', function(){
+  describe('with multiple arguments', function () {
+    describe('when Accept-Charset is populated', function () {
+      describe('if any types match', function () {
+        it('should return the best fit', function () {
           var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
           var accept = accepts(req)
           assert.equal(accept.charsets('utf-7', 'utf-8'), 'utf-8')
         })
       })
 
-      describe('if no types match', function(){
-        it('should return false', function(){
+      describe('if no types match', function () {
+        it('should return false', function () {
           var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
           var accept = accepts(req)
           assert.strictEqual(accept.charsets('utf-16'), false)
@@ -48,8 +48,8 @@ describe('accepts.charsets()', function(){
       })
     })
 
-    describe('when Accept-Charset is not populated', function(){
-      it('should return the first type', function(){
+    describe('when Accept-Charset is not populated', function () {
+      it('should return the first type', function () {
         var req = createRequest()
         var accept = accepts(req)
         assert.equal(accept.charsets('utf-7', 'utf-8'), 'utf-7')
@@ -57,8 +57,8 @@ describe('accepts.charsets()', function(){
     })
   })
 
-  describe('with an array', function(){
-    it('should return the best fit', function(){
+  describe('with an array', function () {
+    it('should return the best fit', function () {
       var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
       var accept = accepts(req)
       assert.equal(accept.charsets(['utf-7', 'utf-8']), 'utf-8')
@@ -66,7 +66,7 @@ describe('accepts.charsets()', function(){
   })
 })
 
-function createRequest(charset) {
+function createRequest (charset) {
   return {
     headers: {
       'accept-charset': charset
