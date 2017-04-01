@@ -6,11 +6,13 @@
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-Higher level content negotiation based on [negotiator](https://www.npmjs.com/package/negotiator). Extracted from [koa](https://www.npmjs.com/package/koa) for general use.
+Higher level content negotiation based on [negotiator](https://www.npmjs.com/package/negotiator).
+Extracted from [koa](https://www.npmjs.com/package/koa) for general use.
 
 In addition to negotiator, it allows:
 
-- Allows types as an array or arguments list, ie `(['text/html', 'application/json'])` as well as `('text/html', 'application/json')`.
+- Allows types as an array or arguments list, ie `(['text/html', 'application/json'])`
+  as well as `('text/html', 'application/json')`.
 - Allows type shorthands such as `json`.
 - Returns `false` when no types match
 - Treats non-existent headers as `*`
