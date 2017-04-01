@@ -27,6 +27,8 @@ $ npm install accepts
 
 ## API
 
+<!-- eslint-disable no-unused-vars -->
+
 ```js
 var accepts = require('accepts')
 ```
@@ -92,11 +94,11 @@ server.
 var accepts = require('accepts')
 var http = require('http')
 
-function app(req, res) {
+function app (req, res) {
   var accept = accepts(req)
 
   // the order of this list is significant; should be server preferred order
-  switch(accept.type(['json', 'html'])) {
+  switch (accept.type(['json', 'html'])) {
     case 'json':
       res.setHeader('Content-Type', 'application/json')
       res.write('{"hello":"world!"}')
