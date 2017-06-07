@@ -4,40 +4,31 @@
  * Copyright(c) 2015 Douglas Christopher Wilson
  * MIT Licensed
  */
-
 'use strict'
-
 /**
  * Module dependencies.
  * @private
  */
-
 var Negotiator = require('negotiator')
 var mime = require('mime-types')
-
 /**
  * Module exports.
  * @public
  */
-
 module.exports = Accepts
-
 /**
  * Create a new Accepts object for the given req.
  *
  * @param {object} req
  * @public
  */
-
-function Accepts (req) {
+function Accepts(req) {
   if (!(this instanceof Accepts)) {
     return new Accepts(req)
   }
-
   this.headers = req.headers
   this.negotiator = new Negotiator(req)
 }
-
 /**
  * Check if the given `type(s)` is acceptable, returning
  * the best match when true, otherwise `undefined`, in which
@@ -78,11 +69,9 @@ function Accepts (req) {
  * @return {String|Array|Boolean}
  * @public
  */
-
 Accepts.prototype.type =
-Accepts.prototype.types = function (types_) {
+Accepts.prototype.types = function(types_) {
   var types = types_
-
   // support flattened arguments
   if (types && !Array.isArray(types)) {
     types = new Array(arguments.length)
@@ -90,26 +79,21 @@ Accepts.prototype.types = function (types_) {
       types[i] = arguments[i]
     }
   }
-
   // no types, return all requested types
   if (!types || types.length === 0) {
     return this.negotiator.mediaTypes()
   }
-
   // no accept header, return first given type
   if (!this.headers.accept) {
     return types[0]
   }
-
   var mimes = types.map(extToMime)
   var accepts = this.negotiator.mediaTypes(mimes.filter(validMime))
   var first = accepts[0]
-
   return first
     ? types[mimes.indexOf(first)]
     : false
 }
-
 /**
  * Return accepted encodings or best fit based on `encodings`.
  *
@@ -122,11 +106,9 @@ Accepts.prototype.types = function (types_) {
  * @return {String|Array}
  * @public
  */
-
 Accepts.prototype.encoding =
-Accepts.prototype.encodings = function (encodings_) {
+Accepts.prototype.encodings = function(encodings_) {
   var encodings = encodings_
-
   // support flattened arguments
   if (encodings && !Array.isArray(encodings)) {
     encodings = new Array(arguments.length)
@@ -134,15 +116,12 @@ Accepts.prototype.encodings = function (encodings_) {
       encodings[i] = arguments[i]
     }
   }
-
   // no encodings, return all requested encodings
   if (!encodings || encodings.length === 0) {
     return this.negotiator.encodings()
   }
-
   return this.negotiator.encodings(encodings)[0] || false
 }
-
 /**
  * Return accepted charsets or best fit based on `charsets`.
  *
@@ -155,11 +134,9 @@ Accepts.prototype.encodings = function (encodings_) {
  * @return {String|Array}
  * @public
  */
-
 Accepts.prototype.charset =
-Accepts.prototype.charsets = function (charsets_) {
+Accepts.prototype.charsets = function(charsets_) {
   var charsets = charsets_
-
   // support flattened arguments
   if (charsets && !Array.isArray(charsets)) {
     charsets = new Array(arguments.length)
@@ -167,15 +144,12 @@ Accepts.prototype.charsets = function (charsets_) {
       charsets[i] = arguments[i]
     }
   }
-
   // no charsets, return all requested charsets
   if (!charsets || charsets.length === 0) {
     return this.negotiator.charsets()
   }
-
   return this.negotiator.charsets(charsets)[0] || false
 }
-
 /**
  * Return accepted languages or best fit based on `langs`.
  *
@@ -188,13 +162,11 @@ Accepts.prototype.charsets = function (charsets_) {
  * @return {Array|String}
  * @public
  */
-
 Accepts.prototype.lang =
 Accepts.prototype.langs =
 Accepts.prototype.language =
-Accepts.prototype.languages = function (languages_) {
+Accepts.prototype.languages = function(languages_) {
   var languages = languages_
-
   // support flattened arguments
   if (languages && !Array.isArray(languages)) {
     languages = new Array(arguments.length)
@@ -202,15 +174,12 @@ Accepts.prototype.languages = function (languages_) {
       languages[i] = arguments[i]
     }
   }
-
   // no languages, return all requested languages
   if (!languages || languages.length === 0) {
     return this.negotiator.languages()
   }
-
   return this.negotiator.languages(languages)[0] || false
 }
-
 /**
  * Convert extnames to mime.
  *
@@ -218,13 +187,11 @@ Accepts.prototype.languages = function (languages_) {
  * @return {String}
  * @private
  */
-
-function extToMime (type) {
+function extToMime(type) {
   return type.indexOf('/') === -1
     ? mime.lookup(type)
     : type
 }
-
 /**
  * Check if mime is valid.
  *
@@ -232,7 +199,6 @@ function extToMime (type) {
  * @return {String}
  * @private
  */
-
-function validMime (type) {
+function validMime(type) {
   return typeof type === 'string'
 }
