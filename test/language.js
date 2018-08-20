@@ -1,6 +1,7 @@
 
 var accepts = require('..')
 var assert = require('assert')
+var deepEqual = require('deep-equal')
 
 describe('accepts.languages()', function () {
   describe('with no arguments', function () {
@@ -8,7 +9,7 @@ describe('accepts.languages()', function () {
       it('should return accepted types', function () {
         var req = createRequest('en;q=0.8, es, pt')
         var accept = accepts(req)
-        assert.deepEqual(accept.languages(), ['es', 'pt', 'en'])
+        deepEqual(accept.languages(), ['es', 'pt', 'en'])
       })
     })
 
@@ -16,7 +17,7 @@ describe('accepts.languages()', function () {
       it('should return *', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.deepEqual(accept.languages(), ['*'])
+        deepEqual(accept.languages(), ['*'])
       })
     })
 
@@ -24,7 +25,7 @@ describe('accepts.languages()', function () {
       it('should return an empty array', function () {
         var req = createRequest('')
         var accept = accepts(req)
-        assert.deepEqual(accept.languages(), [])
+        deepEqual(accept.languages(), [])
       })
     })
   })

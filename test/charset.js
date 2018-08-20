@@ -1,6 +1,7 @@
 
 var accepts = require('..')
 var assert = require('assert')
+var deepEqual = require('deep-equal')
 
 describe('accepts.charsets()', function () {
   describe('with no arguments', function () {
@@ -8,7 +9,7 @@ describe('accepts.charsets()', function () {
       it('should return accepted types', function () {
         var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
         var accept = accepts(req)
-        assert.deepEqual(accept.charsets(), ['utf-8', 'utf-7', 'iso-8859-1'])
+        deepEqual(accept.charsets(), ['utf-8', 'utf-7', 'iso-8859-1'])
       })
     })
 
@@ -16,7 +17,7 @@ describe('accepts.charsets()', function () {
       it('should return *', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.deepEqual(accept.charsets(), ['*'])
+        deepEqual(accept.charsets(), ['*'])
       })
     })
 
@@ -24,7 +25,7 @@ describe('accepts.charsets()', function () {
       it('should return an empty array', function () {
         var req = createRequest('')
         var accept = accepts(req)
-        assert.deepEqual(accept.charsets(), [])
+        deepEqual(accept.charsets(), [])
       })
     })
   })

@@ -1,6 +1,7 @@
 
 var accepts = require('..')
 var assert = require('assert')
+var deepEqual = require('deep-equal')
 
 describe('accepts.types()', function () {
   describe('with no arguments', function () {
@@ -8,7 +9,7 @@ describe('accepts.types()', function () {
       it('should return all accepted types', function () {
         var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
         var accept = accepts(req)
-        assert.deepEqual(accept.types(), ['text/html', 'text/plain', 'image/jpeg', 'application/*'])
+        deepEqual(accept.types(), ['text/html', 'text/plain', 'image/jpeg', 'application/*'])
       })
     })
 
@@ -16,7 +17,7 @@ describe('accepts.types()', function () {
       it('should return */*', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.deepEqual(accept.types(), ['*/*'])
+        deepEqual(accept.types(), ['*/*'])
       })
     })
 
@@ -24,7 +25,7 @@ describe('accepts.types()', function () {
       it('should return []', function () {
         var req = createRequest('')
         var accept = accepts(req)
-        assert.deepEqual(accept.types(), [])
+        deepEqual(accept.types(), [])
       })
     })
   })
