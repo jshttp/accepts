@@ -35,7 +35,7 @@ describe('accepts.charsets()', function () {
         it('should return the best fit', function () {
           var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
           var accept = accepts(req)
-          assert.equal(accept.charsets('utf-7', 'utf-8'), 'utf-8')
+          assert.strictEqual(accept.charsets('utf-7', 'utf-8'), 'utf-8')
         })
       })
 
@@ -52,7 +52,7 @@ describe('accepts.charsets()', function () {
       it('should return the first type', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.equal(accept.charsets('utf-7', 'utf-8'), 'utf-7')
+        assert.strictEqual(accept.charsets('utf-7', 'utf-8'), 'utf-7')
       })
     })
   })
@@ -61,7 +61,7 @@ describe('accepts.charsets()', function () {
     it('should return the best fit', function () {
       var req = createRequest('utf-8, iso-8859-1;q=0.2, utf-7;q=0.5')
       var accept = accepts(req)
-      assert.equal(accept.charsets(['utf-7', 'utf-8']), 'utf-8')
+      assert.strictEqual(accept.charsets(['utf-7', 'utf-8']), 'utf-8')
     })
   })
 })

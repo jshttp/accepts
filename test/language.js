@@ -35,7 +35,7 @@ describe('accepts.languages()', function () {
         it('should return the best fit', function () {
           var req = createRequest('en;q=0.8, es, pt')
           var accept = accepts(req)
-          assert.equal(accept.languages('es', 'en'), 'es')
+          assert.strictEqual(accept.languages('es', 'en'), 'es')
         })
       })
 
@@ -52,7 +52,7 @@ describe('accepts.languages()', function () {
       it('should return the first type', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.equal(accept.languages('es', 'en'), 'es')
+        assert.strictEqual(accept.languages('es', 'en'), 'es')
       })
     })
   })
@@ -61,7 +61,7 @@ describe('accepts.languages()', function () {
     it('should return the best fit', function () {
       var req = createRequest('en;q=0.8, es, pt')
       var accept = accepts(req)
-      assert.equal(accept.languages(['es', 'en']), 'es')
+      assert.strictEqual(accept.languages(['es', 'en']), 'es')
     })
   })
 })

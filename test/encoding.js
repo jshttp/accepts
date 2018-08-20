@@ -9,7 +9,7 @@ describe('accepts.encodings()', function () {
         var req = createRequest('gzip, compress;q=0.2')
         var accept = accepts(req)
         assert.deepEqual(accept.encodings(), ['gzip', 'compress', 'identity'])
-        assert.equal(accept.encodings('gzip', 'compress'), 'gzip')
+        assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
       })
     })
 
@@ -18,7 +18,7 @@ describe('accepts.encodings()', function () {
         var req = createRequest()
         var accept = accepts(req)
         assert.deepEqual(accept.encodings(), ['identity'])
-        assert.equal(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
+        assert.strictEqual(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
       })
 
       describe('when identity is not included', function () {
@@ -35,7 +35,7 @@ describe('accepts.encodings()', function () {
         var req = createRequest('')
         var accept = accepts(req)
         assert.deepEqual(accept.encodings(), ['identity'])
-        assert.equal(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
+        assert.strictEqual(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
       })
 
       describe('when identity is not included', function () {
@@ -52,8 +52,8 @@ describe('accepts.encodings()', function () {
     it('should return the best fit', function () {
       var req = createRequest('gzip, compress;q=0.2')
       var accept = accepts(req)
-      assert.equal(accept.encodings('compress', 'gzip'), 'gzip')
-      assert.equal(accept.encodings('gzip', 'compress'), 'gzip')
+      assert.strictEqual(accept.encodings('compress', 'gzip'), 'gzip')
+      assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
     })
   })
 
@@ -61,7 +61,7 @@ describe('accepts.encodings()', function () {
     it('should return the best fit', function () {
       var req = createRequest('gzip, compress;q=0.2')
       var accept = accepts(req)
-      assert.equal(accept.encodings(['compress', 'gzip']), 'gzip')
+      assert.strictEqual(accept.encodings(['compress', 'gzip']), 'gzip')
     })
   })
 })

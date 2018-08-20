@@ -42,7 +42,7 @@ describe('accepts.types()', function () {
       it('should return the first type', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.equal(accept.types('text/html', 'text/plain', 'image/jpeg', 'application/*'), 'text/html')
+        assert.strictEqual(accept.types('text/html', 'text/plain', 'image/jpeg', 'application/*'), 'text/html')
       })
     })
   })
@@ -51,10 +51,10 @@ describe('accepts.types()', function () {
     it('should convert to mime types', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
-      assert.equal(accept.types('html'), 'html')
-      assert.equal(accept.types('.html'), '.html')
-      assert.equal(accept.types('txt'), 'txt')
-      assert.equal(accept.types('.txt'), '.txt')
+      assert.strictEqual(accept.types('html'), 'html')
+      assert.strictEqual(accept.types('.html'), '.html')
+      assert.strictEqual(accept.types('txt'), 'txt')
+      assert.strictEqual(accept.types('.txt'), '.txt')
       assert.strictEqual(accept.types('png'), false)
       assert.strictEqual(accept.types('bogus'), false)
     })
@@ -64,9 +64,9 @@ describe('accepts.types()', function () {
     it('should return the first match', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
-      assert.equal(accept.types(['png', 'text', 'html']), 'text')
-      assert.equal(accept.types(['png', 'html']), 'html')
-      assert.equal(accept.types(['bogus', 'html']), 'html')
+      assert.strictEqual(accept.types(['png', 'text', 'html']), 'text')
+      assert.strictEqual(accept.types(['png', 'html']), 'html')
+      assert.strictEqual(accept.types(['bogus', 'html']), 'html')
     })
   })
 
@@ -74,9 +74,9 @@ describe('accepts.types()', function () {
     it('should return the first match', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
-      assert.equal(accept.types('png', 'text', 'html'), 'text')
-      assert.equal(accept.types('png', 'html'), 'html')
-      assert.equal(accept.types('bogus', 'html'), 'html')
+      assert.strictEqual(accept.types('png', 'text', 'html'), 'text')
+      assert.strictEqual(accept.types('png', 'html'), 'html')
+      assert.strictEqual(accept.types('bogus', 'html'), 'html')
     })
   })
 
@@ -84,8 +84,8 @@ describe('accepts.types()', function () {
     it('should return the type', function () {
       var req = createRequest('text/plain, text/html')
       var accept = accepts(req)
-      assert.equal(accept.types('text/html'), 'text/html')
-      assert.equal(accept.types('text/plain'), 'text/plain')
+      assert.strictEqual(accept.types('text/html'), 'text/html')
+      assert.strictEqual(accept.types('text/plain'), 'text/plain')
     })
   })
 
@@ -93,9 +93,9 @@ describe('accepts.types()', function () {
     it('should return the type', function () {
       var req = createRequest('application/json, */*')
       var accept = accepts(req)
-      assert.equal(accept.types('text/html'), 'text/html')
-      assert.equal(accept.types('text/plain'), 'text/plain')
-      assert.equal(accept.types('image/png'), 'image/png')
+      assert.strictEqual(accept.types('text/html'), 'text/html')
+      assert.strictEqual(accept.types('text/plain'), 'text/plain')
+      assert.strictEqual(accept.types('image/png'), 'image/png')
     })
   })
 
@@ -103,8 +103,8 @@ describe('accepts.types()', function () {
     it('should return the type', function () {
       var req = createRequest('application/json, text/*')
       var accept = accepts(req)
-      assert.equal(accept.types('text/html'), 'text/html')
-      assert.equal(accept.types('text/plain'), 'text/plain')
+      assert.strictEqual(accept.types('text/html'), 'text/html')
+      assert.strictEqual(accept.types('text/plain'), 'text/plain')
       assert.strictEqual(accept.types('image/png'), false)
     })
   })
