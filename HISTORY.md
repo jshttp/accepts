@@ -1,8 +1,8 @@
 unreleased
 ==========
 
-  * deps: mime-types@~2.1.20
-    - deps: mime-db@~1.36.0
+  * deps: mime-types@~2.1.21
+    - deps: mime-db@~1.37.0
 
 1.3.5 / 2018-02-28
 ==================
