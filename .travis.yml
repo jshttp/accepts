@@ -20,6 +20,9 @@ env:
   global:
     # Suppress Node.js 0.6 compile warnings
     - "CXXCOM='$CXX -o $TARGET -c $CXXFLAGS $CCFLAGS -Wno-unused-local-typedefs -Wno-maybe-uninitialized -Wno-narrowing -Wno-strict-overflow $_CCCOMCOM $SOURCES'"
+cache:
+  directories:
+    - node_modules
 before_install:
   - |
     # Setup utility functions
@@ -54,6 +57,17 @@ before_install:
     # Configure istanbul for coverage
     if node_version_lt '0.10'; then npm_remove_module_re '^istanbul$'
     fi
+  # Update Node.js modules
+  - |
+    # Prune & rebuild node_modules
+    if [[ -d node_modules ]]; then
+      npm prune
+      npm rebuild
+    fi
+before_scrpt:
+  - |
+    # Contents of node_modules
+    npm -s ls ||:
 script:
   - |
     # Run test script, depending on istanbul install
