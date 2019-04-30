@@ -1,5 +1,5 @@
-unreleased
-==========
+1.3.7 / 2019-04-29
+==================
 
   * deps: negotiator@0.6.2
     - Fix sorting charset, encoding, and language with extra parameters
