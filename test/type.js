@@ -114,7 +114,7 @@ describe('accepts.types()', function () {
 function createRequest (type) {
   return {
     headers: {
-      'accept': type
+      accept: type
     }
   }
 }
