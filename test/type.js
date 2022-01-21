@@ -9,7 +9,7 @@ describe('accepts.types()', function () {
       it('should return all accepted types', function () {
         var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
         var accept = accepts(req)
-        deepEqual(accept.types(), ['text/html', 'text/plain', 'image/jpeg', 'application/*'])
+        assert.ok(deepEqual(accept.types(), ['text/html', 'text/plain', 'image/jpeg', 'application/*']))
       })
     })
 
@@ -17,7 +17,7 @@ describe('accepts.types()', function () {
       it('should return */*', function () {
         var req = createRequest()
         var accept = accepts(req)
-        deepEqual(accept.types(), ['*/*'])
+        assert.ok(deepEqual(accept.types(), ['*/*']))
       })
     })
 
@@ -25,7 +25,7 @@ describe('accepts.types()', function () {
       it('should return []', function () {
         var req = createRequest('')
         var accept = accepts(req)
-        deepEqual(accept.types(), [])
+        assert.ok(deepEqual(accept.types(), []))
       })
     })
   })

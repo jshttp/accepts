@@ -9,7 +9,7 @@ describe('accepts.encodings()', function () {
       it('should return accepted types', function () {
         var req = createRequest('gzip, compress;q=0.2')
         var accept = accepts(req)
-        deepEqual(accept.encodings(), ['gzip', 'compress', 'identity'])
+        assert.ok(deepEqual(accept.encodings(), ['gzip', 'compress', 'identity']))
         assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
       })
     })
@@ -18,7 +18,7 @@ describe('accepts.encodings()', function () {
       it('should return identity', function () {
         var req = createRequest()
         var accept = accepts(req)
-        deepEqual(accept.encodings(), ['identity'])
+        assert.ok(deepEqual(accept.encodings(), ['identity']))
         assert.strictEqual(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
       })
 
@@ -35,7 +35,7 @@ describe('accepts.encodings()', function () {
       it('should return identity', function () {
         var req = createRequest('')
         var accept = accepts(req)
-        deepEqual(accept.encodings(), ['identity'])
+        assert.ok(deepEqual(accept.encodings(), ['identity']))
         assert.strictEqual(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
       })
 

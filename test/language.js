@@ -9,7 +9,7 @@ describe('accepts.languages()', function () {
       it('should return accepted types', function () {
         var req = createRequest('en;q=0.8, es, pt')
         var accept = accepts(req)
-        deepEqual(accept.languages(), ['es', 'pt', 'en'])
+        assert.ok(deepEqual(accept.languages(), ['es', 'pt', 'en']))
       })
     })
 
@@ -17,7 +17,7 @@ describe('accepts.languages()', function () {
       it('should return *', function () {
         var req = createRequest()
         var accept = accepts(req)
-        deepEqual(accept.languages(), ['*'])
+        assert.ok(deepEqual(accept.languages(), ['*']))
       })
     })
 
@@ -25,7 +25,7 @@ describe('accepts.languages()', function () {
       it('should return an empty array', function () {
         var req = createRequest('')
         var accept = accepts(req)
-        deepEqual(accept.languages(), [])
+        assert.ok(deepEqual(accept.languages(), []))
       })
     })
   })
