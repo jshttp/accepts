@@ -3,6 +3,7 @@ unreleased
 
   * deps: mime-types@~2.1.34
     - deps: mime-db@~1.51.0
+  * deps: negotiator@0.6.3
 
 1.3.7 / 2019-04-29
 ==================
