@@ -29,8 +29,6 @@ $ npm install accepts
 
 ## API
 
-<!-- eslint-disable no-unused-vars -->
-
 ```js
 var accepts = require('accepts')
 ```
