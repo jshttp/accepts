@@ -11,7 +11,7 @@ declare namespace accepts {
          */
         charset(): string[];
         charset(charsets: string[]): string | string[] | false;
-        charset(...charsets: string[]): string | string[] | false;
+        charset(...charsets: string[]): string | false;
 
         /**
          * Return the first accepted charset. If nothing in `charsets` is accepted, then `false` is returned.
@@ -20,7 +20,7 @@ declare namespace accepts {
          */
         charsets(): string[];
         charsets(charsets: string[]): string | string[] | false;
-        charsets(...charsets: string[]): string | string[] | false;
+        charsets(...charsets: string[]): string | false;
 
         /**
          * Return the first accepted encoding. If nothing in `encodings` is accepted, then `false` is returned.
@@ -29,7 +29,7 @@ declare namespace accepts {
          */
         encoding(): string[];
         encoding(encodings: string[]): string | string[] | false;
-        encoding(...encodings: string[]): string | string[] | false;
+        encoding(...encodings: string[]): string | false;
 
         /**
          * Return the first accepted encoding. If nothing in `encodings` is accepted, then `false` is returned.
@@ -38,7 +38,7 @@ declare namespace accepts {
          */
         encodings(): string[];
         encodings(encodings: string[]): string | string[] | false;
-        encodings(...encodings: string[]): string | string[] | false;
+        encodings(...encodings: string[]): string | false;
 
         /**
          * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
@@ -47,7 +47,7 @@ declare namespace accepts {
          */
         language(): string[];
         language(languages: string[]): string | string[] | false;
-        language(...languages: string[]): string | string[] | false;
+        language(...languages: string[]): string | false;
 
         /**
          * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
@@ -56,7 +56,7 @@ declare namespace accepts {
          */
         languages(): string[];
         languages(languages: string[]): string | string[] | false;
-        languages(...languages: string[]): string | string[] | false;
+        languages(...languages: string[]): string | false;
 
         /**
          * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
@@ -65,7 +65,7 @@ declare namespace accepts {
          */
         lang(): string[];
         lang(languages: string[]): string | string[] | false;
-        lang(...languages: string[]): string | string[] | false;
+        lang(...languages: string[]): string | false;
 
         /**
          * Return the first accepted language. If nothing in `languages` is accepted, then `false` is returned.
@@ -74,7 +74,7 @@ declare namespace accepts {
          */
         langs(): string[];
         langs(languages: string[]): string | string[] | false;
-        langs(...languages: string[]): string | string[] | false;
+        langs(...languages: string[]): string | false;
 
         /**
          * Return the first accepted type (and it is returned as the same text as what appears in the `types` array). If nothing in `types` is accepted, then `false` is returned.
@@ -83,9 +83,9 @@ declare namespace accepts {
          * The `types` array can contain full MIME types or file extensions. Any value that is not a full MIME types is passed to `require('mime-types').lookup`.
          */
         type(types: string[]): string | string[] | false;
-        type(...types: string[]): string | string[] | false;
+        type(...types: string[]): string | false;
         types(types: string[]): string | string[] | false;
-        types(...types: string[]): string | string[] | false;
+        types(...types: string[]): string | false;
     }
 }
 

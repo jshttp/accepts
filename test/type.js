@@ -109,6 +109,14 @@ describe('accepts.types()', function () {
       assert.strictEqual(accept.types('image/png'), false)
     })
   })
+
+  describe('with an empty array', function () {
+    it('should return all accepted types', function () {
+      var req = createRequest('application/*;q=0.2, image/jpeg;q=0.8, text/html, text/plain')
+      var accept = accepts(req)
+      assert.ok(deepEqual(accept.types([]), ['text/html', 'text/plain', 'image/jpeg', 'application/*']))
+    })
+  })
 })
 
 function createRequest (type) {
