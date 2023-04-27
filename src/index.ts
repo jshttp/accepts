@@ -15,16 +15,16 @@ const mime = require("mime-types");
  */
 
 class Accepts {
-  static negotiator: any;
-  static headers: Headers | undefined;
+  negotiator: any;
+  headers: Headers | undefined;
 
   constructor(req: Request) {
     if(!(this instanceof Accepts)){
       return new Accepts(req);
     }
     
-    Accepts.headers = req.headers;
-    Accepts.negotiator = new Negotiator(req);
+    this.headers = req.headers;
+    this.negotiator = new Negotiator(req);
   }
 
   /**
@@ -68,7 +68,7 @@ class Accepts {
    * @public
    */
 
-  public static types(types_: string | string[]): string | string[] | boolean {
+  types(types_: string | string[]): string | string[] | boolean {
     let types = types_;
 
     // support flattened arguments
@@ -108,7 +108,7 @@ class Accepts {
    * @return {String|Array}
    * @public
    */
-  public static encodings(encodings_: string | string[]): string | string[] {
+  encodings(encodings_: string | string[]): string | string[] {
     var encodings = encodings_;
 
     // support flattened arguments
@@ -139,7 +139,7 @@ class Accepts {
    * @return {String|Array}
    * @public
    */
-  public static  charsets(charsets_: string | string[]): string | string[] {
+  charsets(charsets_: string | string[]): string | string[] {
     var charsets = charsets_;
 
     // support flattened arguments
@@ -170,7 +170,7 @@ class Accepts {
    * @return {Array|String}
    * @public
    */
-  public static  languages(languages_: string | string[]): string | string[] {
+  languages(languages_: string | string[]): string | string[] {
     var languages = languages_;
 
     // support flattened arguments
@@ -189,7 +189,7 @@ class Accepts {
     return this.negotiator.languages(languages)[0] || false;
   };
 
-  public static lang(languages_: string | string[]): string | string[] {
+  lang(languages_: string | string[]): string | string[] {
     return this.languages(languages_);
   };
 }
@@ -218,4 +218,6 @@ function validMime(type: string): boolean {
   return typeof type === "string";
 }
 
-module.exports = Accepts;
+module.exports = function(req:Request){
+  return new Accepts(req);
+};
