@@ -6,11 +6,10 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         name:
-        - Node.js 0.6
         - Node.js 0.8
         - Node.js 0.10
         - Node.js 0.12
@@ -31,13 +30,12 @@ jobs:
         - Node.js 15.x
         - Node.js 16.x
         - Node.js 17.x
+        - Node.js 18.x
+        - Node.js 19.x
+        - Node.js 20.x
+        - Node.js 21.x
 
         include:
-        - name: Node.js 0.6
-          node-version: "0.6"
-          npm-i: mocha@1.21.5
-          npm-rm: nyc
-
         - name: Node.js 0.8
           node-version: "0.8"
           npm-i: mocha@2.5.3
@@ -81,11 +79,11 @@ jobs:
 
         - name: Node.js 8.x
           node-version: "8.17"
-          npm-i: mocha@7.2.0
+          npm-i: mocha@7.2.0 nyc@14.1.1
 
         - name: Node.js 9.x
           node-version: "9.11"
-          npm-i: mocha@7.2.0
+          npm-i: mocha@7.2.0 nyc@14.1.1
 
         - name: Node.js 10.x
           node-version: "10.24"
@@ -113,6 +111,18 @@ jobs:
         - name: Node.js 17.x
           node-version: "17.4"
 
+        - name: Node.js 18.x
+          node-version: "18.20"
+
+        - name: Node.js 19.x
+          node-version: "19.9"
+
+        - name: Node.js 20.x
+          node-version: "20.12"
+
+        - name: Node.js 21.x
+          node-version: "21.7"
+
     steps:
     - uses: actions/checkout@v2
 
@@ -139,7 +149,15 @@ jobs:
         dirname "$(nvm which ${{ matrix.node-version }})" >> "$GITHUB_PATH"
 
     - name: Configure npm
-      run: npm config set shrinkwrap false
+      run: |
+        if [[ "$(npm config get package-lock)" == "true" ]]; then
+          npm config set package-lock false
+        else
+          npm config set shrinkwrap false
+        fi
+
+    - name: Remove non-test npm modules
+      run: npm rm --silent --save-dev csv-parse raw-body stream-to-array
 
     - name: Remove npm module(s) ${{ matrix.npm-rm }}
       run: npm rm --silent --save-dev ${{ matrix.npm-rm }}
