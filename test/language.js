@@ -65,6 +65,14 @@ describe('accepts.languages()', function () {
       assert.strictEqual(accept.languages(['es', 'en']), 'es')
     })
   })
+
+  describe('with an empty array', function () {
+    it('should return accepted types', function () {
+      var req = createRequest('en;q=0.8, es, pt')
+      var accept = accepts(req)
+      assert.deepEqual(accept.languages([]), ['es', 'pt', 'en'])
+    })
+  })
 })
 
 function createRequest (language) {

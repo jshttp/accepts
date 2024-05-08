@@ -65,6 +65,15 @@ describe('accepts.encodings()', function () {
       assert.strictEqual(accept.encodings(['compress', 'gzip']), 'gzip')
     })
   })
+
+  describe('with an empty array', function () {
+    it('should return accepted types', function () {
+      var req = createRequest('gzip, compress;q=0.2')
+      var accept = accepts(req)
+      assert.ok(deepEqual(accept.encodings([]), ['gzip', 'compress', 'identity']))
+      assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
+    })
+  })
 })
 
 function createRequest (encoding) {

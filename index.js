@@ -119,7 +119,7 @@ Accepts.prototype.types = function (types_) {
  *     ['gzip', 'deflate']
  *
  * @param {String|Array} encodings...
- * @return {String|Array}
+ * @return {String|Array|Boolean}
  * @public
  */
 
@@ -152,7 +152,7 @@ Accepts.prototype.encodings = function (encodings_) {
  *     ['utf-8', 'utf-7', 'iso-8859-1']
  *
  * @param {String|Array} charsets...
- * @return {String|Array}
+ * @return {String|Array|Boolean}
  * @public
  */
 
@@ -185,7 +185,7 @@ Accepts.prototype.charsets = function (charsets_) {
  *     ['es', 'pt', 'en']
  *
  * @param {String|Array} langs...
- * @return {Array|String}
+ * @return {String|Array|Boolean}
  * @public
  */
 
