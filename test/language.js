@@ -1,7 +1,7 @@
 
 var accepts = require('..')
 var assert = require('assert')
-var deepEqual = require('deep-equal')
+var deepEqual = require('dequal')
 
 describe('accepts.languages()', function () {
   describe('with no arguments', function () {
