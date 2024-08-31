@@ -1,4 +1,4 @@
-unreleased
+2.0.0 / 2024-08-31
 ==================
 
   * Drop node <18 support
