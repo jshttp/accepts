@@ -3,6 +3,7 @@ unreleased
 
   * Drop node <18 support
   * deps: mime-types@^3.0.0
+  * deps: negotiator@^1.0.0
 
 1.3.8 / 2022-02-02
 ==================
