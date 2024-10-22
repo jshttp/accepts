@@ -56,6 +56,13 @@ describe('accepts.encodings()', function () {
       assert.strictEqual(accept.encodings('compress', 'gzip'), 'gzip')
       assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
     })
+
+    it('should accept a preferred encoding', function () {
+      var req = createRequest('gzip, br, compress')
+      var accept = accepts(req)
+      assert.strictEqual(accept.encodings('gzip', 'br', 'identity', { preferred: ['br'] }), 'br')
+      assert.strictEqual(accept.encodings('gzip', 'identity', 'br', { preferred: ['br'] }), 'br')
+    })
   })
 
   describe('with an array', function () {
@@ -63,6 +70,14 @@ describe('accepts.encodings()', function () {
       var req = createRequest('gzip, compress;q=0.2')
       var accept = accepts(req)
       assert.strictEqual(accept.encodings(['compress', 'gzip']), 'gzip')
+    })
+  })
+
+  describe('with preferred encoding', function () {
+    it('should return the preferred encoding', function () {
+      var req = createRequest('gzip, br')
+      var accept = accepts(req)
+      assert.strictEqual(accept.encodings(['br', 'gzip', 'identity'], { preferred: ['br'] }), 'br')
     })
   })
 })

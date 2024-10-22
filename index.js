@@ -119,17 +119,22 @@ Accepts.prototype.types = function (types_) {
  *     ['gzip', 'deflate']
  *
  * @param {String|Array} encodings...
+ * @param {Object} options_
  * @return {String|Array}
  * @public
  */
 
 Accepts.prototype.encoding =
-Accepts.prototype.encodings = function (encodings_) {
+Accepts.prototype.encodings = function (encodings_, options_) {
   var encodings = encodings_
+  var preferred = arguments[arguments.length - 1]?.preferred || null
 
   // support flattened arguments
   if (encodings && !Array.isArray(encodings)) {
-    encodings = new Array(arguments.length)
+    var lenght = preferred ? arguments.length - 1 : arguments.length
+
+    encodings = new Array(lenght)
+
     for (var i = 0; i < encodings.length; i++) {
       encodings[i] = arguments[i]
     }
@@ -140,7 +145,7 @@ Accepts.prototype.encodings = function (encodings_) {
     return this.negotiator.encodings()
   }
 
-  return this.negotiator.encodings(encodings)[0] || false
+  return this.negotiator.encodings(encodings, { preferred: preferred })[0] || false
 }
 
 /**
