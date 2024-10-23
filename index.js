@@ -127,7 +127,7 @@ Accepts.prototype.types = function (types_) {
 Accepts.prototype.encoding =
 Accepts.prototype.encodings = function (encodings_, options_) {
   var encodings = encodings_
-  var preferred = arguments[arguments.length - 1]?.preferred || null
+  var preferred = arguments[arguments.length - 1] == null ? null : arguments[arguments.length - 1].preferred
 
   // support flattened arguments
   if (encodings && !Array.isArray(encodings)) {
