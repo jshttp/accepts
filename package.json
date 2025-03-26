@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": "jshttp/accepts",
   "dependencies": {
-    "mime-types": "^3.0.0",
+    "mime-types": "^3.0.1",
     "negotiator": "^1.0.0"
   },
   "devDependencies": {
