@@ -1,7 +1,8 @@
-unreleased
+3.0.0 / 2025-03-27
 ==================
 
   * deps: mime-types@^3.0.1
+  * update the `engines` field (this is considered as major)
 
 2.0.0 / 2024-08-31
 ==================
