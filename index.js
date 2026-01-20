@@ -40,13 +40,14 @@ function Accepts (req) {
 
 /**
  * Check if the given `type(s)` is acceptable, returning
- * the best match when true, otherwise `undefined`, in which
+ * the best match when true, otherwise `false`, in which
  * case you should respond with 406 "Not Acceptable".
  *
- * The `type` value may be a single mime type string
- * such as "application/json", the extension name
- * such as "json" or an array `["json", "html", "text/plain"]`. When a list
- * or array is given the _best_ match, if any is returned.
+ * The `type` value may be a single MIME type string
+ * such as "application/json", an extension name
+ * such as "json", an argument list such as `"json", "html", "text/plain",
+ * or an array `["json", "html", "text/plain"]`. When a list
+ * or array is given, the _best_ match, if any is returned.
  *
  * Examples:
  *
@@ -67,7 +68,7 @@ function Accepts (req) {
  *     // Accept: text/*, application/json
  *     this.types('image/png');
  *     this.types('png');
- *     // => undefined
+ *     // => false
  *
  *     // Accept: text/*;q=.5, application/json
  *     this.types(['html', 'json']);
