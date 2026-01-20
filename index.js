@@ -28,7 +28,6 @@ module.exports = Accepts
  * @param {object} req
  * @public
  */
-
 function Accepts (req) {
   if (!(this instanceof Accepts)) {
     return new Accepts(req)
@@ -75,11 +74,10 @@ function Accepts (req) {
  *     this.types('html', 'json');
  *     // => "json"
  *
- * @param {String|Array} types...
- * @return {String|Array|Boolean}
+ * @param {...string|string[]} types_
+ * @return {string|string[]|false}
  * @public
  */
-
 Accepts.prototype.type =
 Accepts.prototype.types = function (types_) {
   var types = types_
@@ -119,11 +117,10 @@ Accepts.prototype.types = function (types_) {
  *
  *     ['gzip', 'deflate']
  *
- * @param {String|Array} encodings...
- * @return {String|Array}
+ * @param {...string|string[]} encodings_
+ * @return {string|string[]|false}
  * @public
  */
-
 Accepts.prototype.encoding =
 Accepts.prototype.encodings = function (encodings_) {
   var encodings = encodings_
@@ -152,11 +149,10 @@ Accepts.prototype.encodings = function (encodings_) {
  *
  *     ['utf-8', 'utf-7', 'iso-8859-1']
  *
- * @param {String|Array} charsets...
- * @return {String|Array}
+ * @param {...string|string[]} charsets_
+ * @return {string|string[]|false}
  * @public
  */
-
 Accepts.prototype.charset =
 Accepts.prototype.charsets = function (charsets_) {
   var charsets = charsets_
@@ -185,11 +181,10 @@ Accepts.prototype.charsets = function (charsets_) {
  *
  *     ['es', 'pt', 'en']
  *
- * @param {String|Array} langs...
- * @return {Array|String}
+ * @param {...string|string[]} languages_
+ * @return {string|string[]|false}
  * @public
  */
-
 Accepts.prototype.lang =
 Accepts.prototype.langs =
 Accepts.prototype.language =
@@ -215,11 +210,10 @@ Accepts.prototype.languages = function (languages_) {
 /**
  * Convert extnames to mime.
  *
- * @param {String} type
- * @return {String}
+ * @param {string} type
+ * @return {string}
  * @private
  */
-
 function extToMime (type) {
   return type.indexOf('/') === -1
     ? mime.lookup(type)
@@ -229,11 +223,10 @@ function extToMime (type) {
 /**
  * Check if mime is valid.
  *
- * @param {String} type
- * @return {Boolean}
+ * @param {string} type
+ * @return {boolean}
  * @private
  */
-
 function validMime (type) {
   return typeof type === 'string'
 }
