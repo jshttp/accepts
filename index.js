@@ -82,15 +82,8 @@ function Accepts (req) {
 
 Accepts.prototype.type =
 Accepts.prototype.types = function (types_) {
-  var types = types_
-
   // support flattened arguments
-  if (types && !Array.isArray(types)) {
-    types = new Array(arguments.length)
-    for (var i = 0; i < types.length; i++) {
-      types[i] = arguments[i]
-    }
-  }
+  const types = normalizeArguments(types_, arguments)
 
   // no types, return all requested types
   if (!types || types.length === 0) {
@@ -126,15 +119,8 @@ Accepts.prototype.types = function (types_) {
 
 Accepts.prototype.encoding =
 Accepts.prototype.encodings = function (encodings_) {
-  var encodings = encodings_
-
   // support flattened arguments
-  if (encodings && !Array.isArray(encodings)) {
-    encodings = new Array(arguments.length)
-    for (var i = 0; i < encodings.length; i++) {
-      encodings[i] = arguments[i]
-    }
-  }
+  const encodings = normalizeArguments(encodings_, arguments)
 
   // no encodings, return all requested encodings
   if (!encodings || encodings.length === 0) {
@@ -159,15 +145,8 @@ Accepts.prototype.encodings = function (encodings_) {
 
 Accepts.prototype.charset =
 Accepts.prototype.charsets = function (charsets_) {
-  var charsets = charsets_
-
   // support flattened arguments
-  if (charsets && !Array.isArray(charsets)) {
-    charsets = new Array(arguments.length)
-    for (var i = 0; i < charsets.length; i++) {
-      charsets[i] = arguments[i]
-    }
-  }
+  const charsets = normalizeArguments(charsets_, arguments)
 
   // no charsets, return all requested charsets
   if (!charsets || charsets.length === 0) {
@@ -194,15 +173,8 @@ Accepts.prototype.lang =
 Accepts.prototype.langs =
 Accepts.prototype.language =
 Accepts.prototype.languages = function (languages_) {
-  var languages = languages_
-
   // support flattened arguments
-  if (languages && !Array.isArray(languages)) {
-    languages = new Array(arguments.length)
-    for (var i = 0; i < languages.length; i++) {
-      languages[i] = arguments[i]
-    }
-  }
+  const languages = normalizeArguments(languages_, arguments)
 
   // no languages, return all requested languages
   if (!languages || languages.length === 0) {
@@ -210,6 +182,22 @@ Accepts.prototype.languages = function (languages_) {
   }
 
   return this.negotiator.languages(languages)[0] || false
+}
+
+/**
+ * Normalize a possibly-flattened argument list into an array.
+ *
+ * @param {string|Array|undefined} firstArg
+ * @param {ArrayLike} args
+ * @return {Array|undefined}
+ * @private
+ */
+
+function normalizeArguments (firstArg, args) {
+  if (firstArg && !Array.isArray(firstArg)) {
+    return Array.from(args)
+  }
+  return firstArg
 }
 
 /**
