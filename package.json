@@ -47,5 +47,9 @@
     "negotiation",
     "accept",
     "accepts"
-  ]
+  ],
+  "homepage": "https://github.com/jshttp/accepts",
+  "bugs": {
+    "url": "https://github.com/jshttp/accepts/issues"
+  }
 }
