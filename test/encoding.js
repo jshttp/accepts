@@ -15,19 +15,10 @@ describe('accepts.encodings()', function () {
     })
 
     describe('when Accept-Encoding is not in request', function () {
-      it('should return identity', function () {
+      it('should return *', function () {
         var req = createRequest()
         var accept = accepts(req)
-        assert.ok(deepEqual(accept.encodings(), ['identity']))
-        assert.strictEqual(accept.encodings('gzip', 'deflate', 'identity'), 'identity')
-      })
-
-      describe('when identity is not included', function () {
-        it('should return false', function () {
-          var req = createRequest()
-          var accept = accepts(req)
-          assert.strictEqual(accept.encodings('gzip', 'deflate'), false)
-        })
+        assert.ok(deepEqual(accept.encodings(), ['*']))
       })
     })
 
@@ -50,11 +41,21 @@ describe('accepts.encodings()', function () {
   })
 
   describe('with multiple arguments', function () {
-    it('should return the best fit', function () {
-      var req = createRequest('gzip, compress;q=0.2')
-      var accept = accepts(req)
-      assert.strictEqual(accept.encodings('compress', 'gzip'), 'gzip')
-      assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
+    describe('when Accept-Encoding is populated', function () {
+      it('should return the best fit', function () {
+        var req = createRequest('gzip, compress;q=0.2')
+        var accept = accepts(req)
+        assert.strictEqual(accept.encodings('compress', 'gzip'), 'gzip')
+        assert.strictEqual(accept.encodings('gzip', 'compress'), 'gzip')
+      })
+    })
+
+    describe('when Accept-Encoding is not in request', function () {
+      it('should return the first encoding', function () {
+        var req = createRequest()
+        var accept = accepts(req)
+        assert.strictEqual(accept.encodings('gzip', 'deflate'), 'gzip')
+      })
     })
   })
 

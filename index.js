@@ -136,8 +136,15 @@ Accepts.prototype.encodings = function (encodings_) {
     }
   }
 
+  var noEncodings = !encodings || encodings.length === 0
+
+  // no accept-encoding header, return first given encoding or ['*'] if no encodings
+  if (typeof this.headers['accept-encoding'] !== 'string') {
+    return noEncodings ? ['*'] : encodings[0]
+  }
+
   // no encodings, return all requested encodings
-  if (!encodings || encodings.length === 0) {
+  if (noEncodings) {
     return this.negotiator.encodings()
   }
 
